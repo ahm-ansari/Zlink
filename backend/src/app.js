@@ -50,7 +50,7 @@ function createApp() {
       }
     },
     credentials: true // Allow cookies or authorization headers if needed
-  })); *.
+  })); */
 
 
   app.use(express.json({ limit: "5mb" }));
