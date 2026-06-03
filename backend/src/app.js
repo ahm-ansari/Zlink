@@ -37,7 +37,8 @@ function createApp() {
   ];
 
   //app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://localhost:3000" }));
-  app.use(cors({
+  app.use(cors({ origin: 'https://zlink-frontend.vercel.app' }));
+  /*app.use(cors({
     origin: function (origin, callback) {
       // Allow requests with no origin (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
@@ -49,7 +50,7 @@ function createApp() {
       }
     },
     credentials: true // Allow cookies or authorization headers if needed
-  }));
+  })); *.
 
 
   app.use(express.json({ limit: "5mb" }));
