@@ -32,7 +32,7 @@ function mountApi(app, basePath) {
 function createApp() {
   const app = express();
   const allowedOrigins = [
-    'https://vercel.app', // Your production frontend
+    'https://zlink-frontend.vercel.app/', // Your production frontend
     'http://localhost:3000'              // Your local development frontend
   ];
 
