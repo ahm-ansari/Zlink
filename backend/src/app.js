@@ -14,6 +14,11 @@ const requestContext = require("./middleware/requestContext");
 const rateLimiter = require("./middleware/rateLimiter");
 const openApiDocument = require("./openapi");
 
+const allowedOrigins = [
+  'https://vercel.app', // Your production frontend
+  'http://localhost:3000'              // Your local development frontend
+];
+
 function mountApi(app, basePath) {
   app.use(basePath, authRoutes);
   app.use(basePath, dashboardRoutes);
@@ -30,7 +35,21 @@ function mountApi(app, basePath) {
 function createApp() {
   const app = express();
 
-  app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://localhost:3000" }));
+  app.use(cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true // Allow cookies or authorization headers if needed
+  }));
+
+
   app.use(express.json({ limit: "5mb" }));
   app.use(requestContext);
   app.use(rateLimiter({ windowMs: 60_000, max: 160 }));
