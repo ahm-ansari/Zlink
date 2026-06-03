@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 async function connectDb() {
-  const uri = "mongodb://localhost:27017/zawajlink"; //process.env.MONGODB_URI;
+  const uri = process.env.MONGODB_URI; //"mongodb://localhost:27017/zawajlink"; //process.env.MONGODB_URI;
 
   if (!uri) {
     throw new Error("MONGODB_URI is required");
