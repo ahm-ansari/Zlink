@@ -7,7 +7,7 @@ async function connectDb() {
     throw new Error("MONGODB_URI is required");
   }
   try {
-    const conn = await mongoose.connect("mongodb://localhost:27017/zawajlink");
+    const conn = await mongoose.connect(uri);
     // 🟢 Visual Anchor: Success Log
     console.log(`MongoDB Connected successfully to host: ${conn.connection.host}`);
   } catch (error) {
