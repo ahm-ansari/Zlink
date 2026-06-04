@@ -5,3 +5,5 @@ dist/
 coverage/
 npm-debug.log*
 .DS_Store
+src/compass-connections.json
+src/zawajlink-profiles.csv
